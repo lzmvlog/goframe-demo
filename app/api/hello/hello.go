@@ -3,8 +3,6 @@ package hello
 import (
 	"github.com/gogf/gf/frame/g"
 	"github.com/gogf/gf/net/ghttp"
-	"github.com/gogf/gf/util/gvalid"
-	"goframe/app/model/student"
 )
 
 // Hello is a demonstration route handler for output "Hello World!".
@@ -58,31 +56,38 @@ func Save(r *ghttp.Request) {
 	//r.Response.WriteJson(r.Parse(&stud))
 
 	//stu := r.GetBodyString()
-	var stu *student.Entity
-	name := r.GetRequest("name").(string)
-	id := r.GetRequest("id")
-	//fmt.Println(name.(string))
-	db := g.DB()
-	db.Insert("student", student.Entity{
-		Id:      id.(string),
-		Name:    name,
-	})
-	if err := r.Parse(&stu); err != nil {
-		// Validation error.
-		if v, ok := err.(*gvalid.Error); ok {
-			r.Response.WriteJsonExit(RegisterRes{
-				Code:  1,
-				Error: v.FirstString(),
-			})
-		}
-		// Other error.
-		r.Response.WriteJsonExit(RegisterRes{
-			Code:  1,
-			Error: err.Error(),
-		})
-	}
-	// ...
-	r.Response.WriteJsonExit(RegisterRes{
-		Data: stu,
-	})
+	//var stu *student.Entity
+	//name := r.GetRequest("name").(string)
+	//id := r.GetRequest("id")
+	////fmt.Println(name.(string))
+	//db := g.DB()
+	//db.Insert("student", student.Entity{
+	//	Id:      id.(string),
+	//	Name:    name,
+	//})
+	//if err := r.Parse(&stu); err != nil {
+	//	// Validation error.
+	//	if v, ok := err.(*gvalid.Error); ok {
+	//		r.Response.WriteJsonExit(RegisterRes{
+	//			Code:  1,
+	//			Error: v.FirstString(),
+	//		})
+	//	}
+	//	// Other error.
+	//	r.Response.WriteJsonExit(RegisterRes{
+	//		Code:  1,
+	//		Error: err.Error(),
+	//	})
+	//}
+	//// ...
+	//r.Response.WriteJsonExit(RegisterRes{
+	//	Data: stu,
+	//})
+
+	//var data *student.Entity
+	//// 这里没有使用Parse而是仅用GetStruct获取对象，
+	//// 数据校验交给后续的service层统一处理。
+	//if err := r.GetStruct(&data); err != nil {
+	//	response.JsonExit(r, 1, err.Error())
+	//}
 }
