@@ -37,7 +37,7 @@ func Update(r *ghttp.Request) {
 	r.Response.WriteJsonExit("更新成功")
 }
 
-// 更新
+// 删除
 func Delete(r *ghttp.Request) {
 	db.Where("id", r.Get("id")).Delete()
 }

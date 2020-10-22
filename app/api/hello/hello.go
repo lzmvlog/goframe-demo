@@ -91,3 +91,15 @@ func Save(r *ghttp.Request) {
 	//	response.JsonExit(r, 1, err.Error())
 	//}
 }
+
+func TestTpl(r *ghttp.Request) {
+	////tplContent := `id:{{.id}}, name:{{.name}}`
+	r.Response.WriteTpl("index.html", g.Map{
+		"id":   123,
+		"name": "john",
+	})
+	//r.Response.WriteTplContent(tplContent, g.Map{
+	//	"id"   : 123,
+	//	"name" : "john",
+	//})
+}

@@ -3,6 +3,7 @@ package router
 import (
 	"github.com/gogf/gf/frame/g"
 	"github.com/gogf/gf/net/ghttp"
+	"goframe/app/api/hello"
 	"goframe/app/api/student"
 )
 
@@ -25,7 +26,34 @@ func init() {
 		group.GET("/select", student.Select)
 		group.POST("/update", student.Update)
 		group.DELETE("/delete", student.Delete)
+		group.ALL("/template", hello.TestTpl)
 	})
+
+	//s.BindHandler("/template", func(r *ghttp.Request) {
+	//	tplContent := `id:{{.id}}, name:{{.name}}`
+	//	r.Response.WriteTplContent(tplContent, g.Map{
+	//		"id"   : 123,
+	//		"name" : "john",
+	//	})
+	//	//r.Response.WriteTpl("index.tpl", g.Map{
+	//	//	"id":   123,
+	//	//	"name": "john",
+	//	//})
+	//})
+	//s.BindHandler("/template", func(r *ghttp.Request) {
+	//	r.Response.WriteTpl("index.tpl", g.Map{
+	//		"id":   123,
+	//		"name": "john",
+	//	})
+	//})
+
+	//s.BindHandler("/template", func(r *ghttp.Request){
+	//	tplContent := `id:{{.id}}, name:{{.name}}`
+	//	r.Response.WriteTplContent(tplContent, g.Map{
+	//		"id"   : 123,
+	//		"name" : "john",
+	//	})
+	//})
 	//group := s.Group("/")
 	//group.PUT("/save", student.Save)
 	//group.GET("/select", student.Select)
