@@ -3,6 +3,7 @@ package student
 import (
 	"github.com/gogf/gf/frame/g"
 	"github.com/gogf/gf/net/ghttp"
+	"goframe/app/api/response"
 	"goframe/app/model/student"
 )
 
@@ -11,11 +12,11 @@ var db = g.DB().Table("student")
 
 // 新增
 func Save(r *ghttp.Request) {
-	db.Data(student.Entity{
-		Id:   r.GetRequestString("id"),
-		Name: r.GetRequestString("name"),
-		Age:  r.GetRequestInt("age"),
-	}).Insert()
+	var stu *student.Entity
+	if err := r.Parse(&stu); err != nil {
+		response.JsonExit(r, 1, err.Error())
+	}
+	db.Data(stu).Insert()
 	r.Response.WriteJsonExit("新增成功")
 }
 
@@ -28,11 +29,11 @@ func Select(r *ghttp.Request) {
 
 // 更新
 func Update(r *ghttp.Request) {
-	db.Data(student.Entity{
-		Id:   r.GetRequestString("id"),
-		Name: r.GetRequestString("name"),
-		Age:  r.GetRequestInt("age"),
-	}).Where("id", r.Get("id")).Update()
+	var stu *student.Entity
+	if err := r.Parse(&stu); err != nil {
+		response.JsonExit(r, 1, err.Error())
+	}
+	db.Data(stu).Where("id", stu.Id).Update()
 	r.Response.WriteJsonExit("更新成功")
 }
 

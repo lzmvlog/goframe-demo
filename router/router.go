@@ -26,11 +26,11 @@ func init() {
 		group.POST("/update", student.Update)
 		group.DELETE("/delete", student.Delete)
 	})
-	group := s.Group("/")
-	group.PUT("/save", student.Save)
-	group.GET("/select", student.Select)
-	group.POST("/update", student.Update)
-	group.DELETE("/delete", student.Delete)
+	//group := s.Group("/")
+	//group.PUT("/save", student.Save)
+	//group.GET("/select", student.Select)
+	//group.POST("/update", student.Update)
+	//group.DELETE("/delete", student.Delete)
 }
 
 //s.Group("/", func(group *ghttp.RouterGroup) {
